@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      <f:loadBundle basename="#{acessoSistema.txtLocale()}" var="msg"/>
+    <h:head>    
+        <title>Cadastro de Clientes</title>
+    </h:head>
+    <h:body>
+	    <f:loadBundle basename="propriedade" var="msgs"/>
+        <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>  
+            <p:dialog modal="true" widgetVar="statusDialog" header="Aguarde"   
+                    draggable="false" closable="false">  
+                <p:graphicImage value="image/loadingAnimation.gif" />  
+            </p:dialog>  
+               
+        <h:form id="formcliente">
+            #{clienteCadastroForm.getClienteBb(param.id)}
+            <p:panel id="panel" header="Cadastro de Cliente"> 
+                <h:panelGrid columns="4" cellpadding="5">
+                    
+                    <h:outputLabel id="lblNomeCliente" value="Nome:"/>
+                    <p:inputText size="40" id="txtNomeCliente" autocomplete="false" title="Informe o nome" value="#{clienteCadastroForm.cliente.nome}"/>  
+                    <h:outputLabel id="lbl0" value=" "/>
+                    &nbsp;
+                    
+                    <h:outputLabel id="lblTipoPessoa" value="Tipo Pessoa:"/>
+                    <p:selectOneMenu id="selectTipoPessoa" value="#{clienteCadastroForm.idPessoa}" update="panel" >
+                        <f:selectItem itemLabel="Selecione" itemValue="0" />  
+                        <f:selectItem itemLabel="Pessoa Física" itemValue="1" />  
+                        <f:selectItem itemLabel="Pessoa Jurídica" itemValue="2" />  
+                    </p:selectOneMenu>
+                    <h:outputLabel id="lbl32" value=" "/>
+                    &nbsp; 
+                    
+                    <h:outputLabel id="lblCnpj_cpf" value="Cnpj:"/>
+                    <p:inputMask size="20" id="txtCnpj_cpf" title="Informe a cnpj" value="#{clienteCadastroForm.cliente.cnpj_cpf}" mask="#{clienteCadastroForm.maskCnpjCpf}"></p:inputMask>
+                    <h:outputLabel id="lbl1" value=" "/>
+                    &nbsp;
+                    
+                    <h:outputLabel id="lblGrupoCliente" value="Grupo do cliente:"/>
+                    <p:selectOneMenu id="selectGrupoCliente" value="#{clienteCadastroForm.id_grupo_cliente}">
+                        <f:selectItem itemLabel="Selecione" itemValue="" />  
+                        <f:selectItems value="#{grupoClienteCadastroForm.listaGrupoCliente}"  var="dados" itemValue="#{dados.id_grupo_cliente}" itemLabel="#{dados.nome_grupo_cliente}"/>                        
+                    </p:selectOneMenu>
+                    <h:outputLabel id="lbl3" value=" "/>
+                    &nbsp;
+                    
+                    <h:outputLabel id="lblRepresentante" value="Representante:"/>
+                    <p:selectOneMenu id="selectRepresentante" value="#{clienteCadastroForm.id_representante}">
+                        <f:selectItem itemLabel="Selecione" itemValue="" />  
+                        <f:selectItems value="#{representanteCadastroForm.listaRepresentante}"  var="dados" itemValue="#{dados.id_representante}" itemLabel="#{dados.nome}"/>                        
+                    </p:selectOneMenu>
+                    <h:outputLabel id="lbl12" value=" "/>
+                    &nbsp;
+                    
+                    <h:outputLabel id="lblEndereco" value="Endereco:"/>
+                    <p:inputText size="40" id="txtEndereco" autocomplete="false" title="Informe a rua" value="#{clienteCadastroForm.cliente.rua}"/>
+                    <h:outputLabel id="lbl4" value=" "/>
+                    &nbsp;
+                    
+                    <h:outputLabel id="lblComplemento" value="Complemento:"/>
+                    <p:inputText size="40" id="txtComplemento" autocomplete="false" title="Informe o complemento (se houver)" value="#{clienteCadastroForm.cliente.complemento}"/>
+                    <h:outputLabel id="lbl7" value=" "/>
+                    &nbsp;
+                    
+                    <h:outputLabel id="lblBairroCidade" value="Bairro - Cidade:"/>
+                    <p:inputText size="25" id="txtBairro" autocomplete="false" title="Informe o bairro" value="#{clienteCadastroForm.cliente.bairro}"/>
+                    <p:inputText size="25" id="txtCidade" autocomplete="false" title="Informe a cidade" value="#{clienteCadastroForm.cliente.cidade}"/>
+                    <p:selectOneMenu id="selectUf" value="#{clienteCadastroForm.cliente.uf}">
+                        <f:selectItem itemLabel="" itemValue="" />  
+                        <f:selectItems value="#{ufCadastroForm.listaUf}"  var="ufs" itemValue="#{ufs.uf}" itemLabel="#{ufs.uf}"/>                        
+                    </p:selectOneMenu>
+                    
+                    
+                    <h:outputLabel id="lblCep" value="Cep:"/>
+                    <p:inputMask size="12" id="txtCep" title="Informe o cep" value="#{clienteCadastroForm.cliente.cep}" mask="99999-999"></p:inputMask>
+                    <h:outputLabel id="lbl5" value=" "/>
+                    &nbsp;
+                    
+                    <h:outputLabel id="lblEmail" value="E-mail:"/>
+                    <p:inputText size="40" id="txtEmail" autocomplete="false" title="Informe o e-mail" value="#{clienteCadastroForm.cliente.e_mail}"/>
+                    <h:outputLabel id="lbl8" value=" "/>
+                    &nbsp;
+                    
+                    <h:outputLabel id="lblTelefone" value="Telefones:"/>
+                    <p:inputMask size="20" id="txtTelefone" title="Informe o Telefone" value="#{clienteCadastroForm.cliente.telefone}" mask="(999)9999-9999"></p:inputMask>
+                    <p:inputMask size="20" id="txtTelefone2" title="Informe o Segundo Telefone" value="#{clienteCadastroForm.cliente.telefone2}" mask="(999)9999-9999"></p:inputMask>
+                    &nbsp;
+                                        
+                </h:panelGrid>  
+            
+                <p:commandButton value="Salvar" title="Clique para salvar" update="panel"   
+                        actionListener="#{clienteCadastroForm.onBotaoSalvar()}"   
+                        id="btnSalvar" />  
+                <p:commandButton value="Cancela" title="Clique para cancelar" update="panel"   
+                        actionListener="#{clienteCadastroForm.onBotaoCancelar()}"   
+                        id="btnCancelar"   
+                        global="false" style="margin-left:5px"/>
+                <br></br>
+                <h:outputLabel id="lblMensagem" value="#{clienteCadastroForm.mensagem}"/>
+                
+            </p:panel>
+            
+        </h:form>	
+	        
+    </h:body>
+</html>
+

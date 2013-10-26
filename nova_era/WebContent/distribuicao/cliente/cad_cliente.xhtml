@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      <f:loadBundle basename="#{acessoSistema.txtLocale()}" var="msg"/>
+    <h:head>    
+        <script>
+            function doPopup(id){
+                var url = "modulos/cliente/clientecadastroform.xhtml?id=" + id;
+                window.open(url,'detalhe_cliente','width=1000,height=600,scrollbars=auto');                
+            }
+            function doPopup2(id){
+                var url = "cadastro_form.jsp?id_cadastro=cliente&amp;id=" + id;
+                window.open(url,'detalhe_cliente','width=800,height=600,scrollbars=auto');                
+            }
+            
+            
+        </script>l
+        <title>Capa Cliente</title>
+    </h:head>
+    <h:body>
+    
+     	<h:outputLink value="../portal.jsf">
+    		<p:graphicImage value="../image/exit_f2.png"/>
+   		</h:outputLink>
+
+        <p:tabView id="tabCliente">
+            <p:tab id="tab1" title="#{msg.resumo}">
+                <h:form id="formresumo">
+                    
+                </h:form>
+            </p:tab>
+            
+            
+            <p:tab id="tab2" title="#{msg.clienteNovo}">
+                <h:form id="formclientenovo">
+                    <p:panel header="#{msg.clienteNovo}"> 
+                        <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
+
+                            <p:commandLink id="selectClienteNew" onmousedown="doPopup('0')" onclick="return false;" title="Novo Cliente">
+                                <p:graphicImage url="../image/new_f2.png"/>
+                            </p:commandLink>
+                            <h:outputLabel id="lbclientenew" value="#{msg.clienteNovo}"/>
+
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </p:tab> 
+            
+            <p:tab id="tab3" title="#{msg.gestaoCliente}">
+                <h:form id="formgestaocliente">
+                    <p:growl id="msgs" showDetail="true" />  
+                    <p:panel header="Gestão do cliente"> 
+                        <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
+
+                            <h:outputLabel id="lblNomeClientePesquisa" value="Nome"/>
+                            <p:autoComplete size="40" id="acCliente" title="Informe o nome" value="#{vnpDistribuicaoCliente.nomeClientePesq}"   
+                                                    completeMethod="#{vnpDistribuicaoCliente.complete}"/>
+                            <p:commandButton value="Pesquisar" update="formgestaocliente"   
+                                            actionListener="#{vnpDistribuicaoCliente.onBotaoPesquisaCliente()}"/>
+                        </h:panelGrid>
+                        <p:dataTable value="#{vnpDistribuicaoCliente.listaProcuraCliente}" var="dados">  
+                            <p:column>
+                               <p:commandLink id="selectClienteJsp" onmousedown="doPopup2('#{dados.id_cliente}')" onclick="return false;" title="Abrir">
+                                    <p:graphicImage url="image/edit_f2.png"/>
+                                </p:commandLink>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id"></h:outputText>
+                                </f:facet>
+                                <h:outputText value="#{dados.id_cliente}"></h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome do cliente"></h:outputText>
+                                </f:facet>
+                                <h:outputText value="#{dados.nome}"></h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Cnpj"></h:outputText>
+                                </f:facet>
+                                <h:outputText value="#{dados.cnpj_cpf}"></h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Cidade"></h:outputText>
+                                </f:facet>
+                                <h:outputText value="#{dados.cidade}"></h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="UF"></h:outputText>
+                                </f:facet>
+                                <h:outputText value="#{dados.uf}"></h:outputText>
+                            </p:column>
+                            <p:column>
+                                <p:commandLink id="selectButtonCliente"  update=":tabCliente:formgestaocliente:display"  oncomplete="clienteDetalhe.show()"  title="Abrir">
+                                    <p:graphicImage url="../image/edit_f2.png"/>
+                                    <f:setPropertyActionListener value="#{dados}" target="#{vnpDistribuicaoCliente.clienteselecionado}"/>  
+                                </p:commandLink>
+                            </p:column> 
+                            
+                        </p:dataTable>
+                        
+                        <p:dialog header="Detalhe Cliente" widgetVar="clienteDetalhe" resizable="false" id="clienteDet"  
+                            showEffect="fade" hideEffect="explode" modal="false" width="900" height="500" >  
+
+                            <h:panelGrid id="display" columns="4" cellpadding="4" style="margin:0 auto;">  
+
+                                <f:facet name="header">
+                                    <h:outputText value="Detalhe Cliente"></h:outputText>
+                                </f:facet>
+
+                                <h:outputText value="Id:" />  
+                                <h:outputText value="#{vnpDistribuicaoCliente.clienteselecionado.id_cliente}" style="font-weight:bold"/>
+                                <h:outputText value=" "/>
+                                &nbsp;
+
+                                <h:outputText value="Nome:" />  
+                                <p:inputText size="40" id="txtNomeCliente" autocomplete="false" title="Informe o nome" value="#{vnpDistribuicaoCliente.clienteselecionado.nome}" style="font-weight:bold"/>
+                                <h:outputText value=" "/>
+                                &nbsp;
+
+                                <h:outputText value="TipoPessoa:" />  
+                                <h:outputText value="#{vnpDistribuicaoCliente.clienteselecionado.tipoPessoa}" style="font-weight:bold"/>
+                                <h:outputText value=" "/>
+                                &nbsp;
+                                
+                                <h:outputText value="Cnpj:" />  
+                                <h:outputText value="#{vnpDistribuicaoCliente.clienteselecionado.cnpj_cpf}" style="font-weight:bold"/>
+                                <h:outputText value=" "/>
+                                &nbsp;
+
+                                <h:outputLabel id="lblEndereco" value="Endereco:"/>
+                                <p:inputText size="40" id="txtEndereco" autocomplete="false" title="Informe a rua" value="#{vnpDistribuicaoCliente.clienteselecionado.rua}"/>
+                                <h:outputText value=" "/>
+                                &nbsp;
+                                
+                                <h:outputLabel id="lblComplemento" value="Complemento:"/>
+                                <p:inputText size="40" id="txtComplemento" autocomplete="false" title="Informe o complemento (se houver)" value="#{vnpDistribuicaoCliente.clienteselecionado.complemento}"/>
+                                <h:outputText value=" "/>
+                                &nbsp;
+                                
+                                <h:outputLabel id="lblBairroCidade" value="Bairro - Cidade:"/>
+                                <p:inputText size="25" id="txtBairro" autocomplete="false" title="Informe o bairro" value="#{vnpDistribuicaoCliente.clienteselecionado.bairro}"/>
+                                <p:inputText size="25" id="txtCidade" autocomplete="false" title="Informe a cidade" value="#{vnpDistribuicaoCliente.clienteselecionado.cidade}"/>
+                                <p:selectOneMenu id="selectUf" value="#{vnpDistribuicaoCliente.clienteselecionado.uf}">
+                                    <f:selectItem itemLabel="" itemValue="" />  
+                                    <f:selectItems value="#{vnpDistribuicaoUf.listaUf}"  var="ufs" itemValue="#{ufs.uf}" itemLabel="#{ufs.uf}"/>                        
+                                </p:selectOneMenu>
+
+
+                                <h:outputLabel id="lblCep" value="Cep:"/>
+                                <p:inputMask size="12" id="txtCep" title="Informe o cep" value="#{vnpDistribuicaoCliente.clienteselecionado.cep}" mask="99999-999"></p:inputMask>
+                                <h:outputText value=" "/>
+                                &nbsp;
+                                
+                                <h:outputLabel id="lblEmail" value="E-mail:"/>
+                                <p:inputText size="40" id="txtEmail" autocomplete="false" title="Informe o e-mail" value="#{vnpDistribuicaoCliente.clienteselecionado.e_mail}"/>
+                                <h:outputText value=" "/>
+                                &nbsp;
+                                
+                                <h:outputLabel id="lblTelefone" value="Telefones:"/>
+                                <p:inputMask size="20" id="txtTelefone" title="Informe o Telefone" value="#{vnpDistribuicaoCliente.clienteselecionado.telefone}" mask="(999)9999-9999"></p:inputMask>
+                                <p:inputMask size="20" id="txtTelefone2" title="Informe o Segundo Telefone" value="#{vnpDistribuicaoCliente.clienteselecionado.telefone2}" mask="(999)9999-9999"></p:inputMask>
+                                &nbsp;
+                                
+                                <p:commandButton value="Salvar" title="Clique para salvar" update="formgestaocliente"   
+                                                 actionListener="#{vnpDistribuicaoCliente.onUpdateClienteSelecionado}" id="btnSalvarSelect" />
+
+                            </h:panelGrid>  
+                        </p:dialog>  
+                    </p:panel>
+                </h:form>
+            </p:tab>
+            
+            <p:tab id="tab4" title="#{msg.relatorioCliente}">
+                <h:form id="formrelatoriocliente">
+                    <p:panel header="Relatório de Clientes"> 
+                        
+                    </p:panel>
+                </h:form>
+            </p:tab> 
+        </p:tabView> 
+        
+    </h:body>
+</html>
+
