@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+	<title><h:outputText value="Portal Nova Era" /></title>
+	<f:loadBundle basename="br.com.novaera.messages.pt_txt" var="msg" />
+</h:head>
+<h:body>
+<h:form id="formIndex">
+
+			<p:panel id="panel" header="#{msg.acessoPortal}">
+		
+			<p:messages style="color: red" showDetail="true" />
+			<h:panelGrid columns="3" cellpadding="5">
+				<h:outputLabel id="lblEmail" value="#{msg.email}:" />
+				<p:inputText size="35" id="txtEmail" autocomplete="false"
+					title="#{msg.msgInfEmail}" value="#{acessoSistema.email}" />  
+                    &nbsp;
+
+                    <h:outputLabel id="lblSenha"
+					value="#{msg.password}:" />
+				<p:password size="12" id="txtSenha" title="#{msg.msgInfPassword}"
+					value="#{acessoSistema.password}" feedback="false" minLength="12" />  
+                    &nbsp;
+                </h:panelGrid>
+			<p:commandButton value="#{msg.logar}" title="#{msg.msgInfLogar}"
+				update="panel" actionListener="#{acessoSistema.validateUser()}"
+				id="btnLogar" />
+			<br></br>
+			<h:outputLabel id="lblMensagem" value="" />
+
+
+		</p:panel>
+
+	</h:form>
+</h:body>
+</html>
