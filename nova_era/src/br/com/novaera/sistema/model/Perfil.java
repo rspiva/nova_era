@@ -3,14 +3,14 @@ package br.com.novaera.sistema.model;
 import javax.persistence.*;
 
 @Entity
-@Table( name="perfil")
+@Table( name="perfil_user")
 public class Perfil {
 	
 	@Id@GeneratedValue
 	@Column (name="id_perfil")
 	private Integer id;
 	
-	@Column (name = "nome")
+	@Column (name = "name")
 	String nome;
 	/*
 	@Column (name = "sn_administrador")

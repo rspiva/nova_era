@@ -1,5 +1,7 @@
 package br.com.novaera.system;
 
+import br.com.novaera.distribuicao.controller.CustomerController;
+import br.com.novaera.distribuicao.model.Customer;
 import br.com.novaera.sistema.controller.UserController;
 import br.com.novaera.sistema.model.User;
 
@@ -24,12 +26,19 @@ public class Teste {
         System.out.println(user.getNome());		
 		*/
 		
+		/*
 		UserController n = new UserController();
 		User user = (User) n.getUserEmail("rodrigospiva@yahoo.com.br");
 		System.out.println(user.getNome());
 		System.out.println(user.getEmail());  
+		*/
+		CustomerController c = new CustomerController();
+		Customer customer = (Customer) c.getCustomerId(1);
+		System.out.println(customer.getName());
+		
 		
 		/*
+		 * 
 		PerfilController p = new PerfilController();
 		Perfil perfil = p.getPerfil(1);
 		System.out.println(perfil.getNome());
