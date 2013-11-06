@@ -2,25 +2,31 @@ package br.com.novaera.system;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
+
 
 public class HibernateUtil {
 	
 
-	private static final SessionFactory sessionFactory =  buildSessionFactory();
-	private static SessionFactory buildSessionFactory(){
-		try{
-			Configuration cfg = new Configuration();
-			cfg.configure("hibernate.cfg.xml");
-			return cfg.buildSessionFactory();
-		}catch(Throwable e){
-			System.out.println("Criação inicial do objeto SessionFactory falho. Erro " + e );
-			throw new ExceptionInInitializerError(e);
-		}	
-	}
-	public static SessionFactory getSessionFactory(){
-		return sessionFactory;
-		
-	}
+	private static final SessionFactory sessionFactory = buildSessionFactory();
+	 
+    private static SessionFactory buildSessionFactory() {
+        try {
+            // Create the SessionFactory from hibernate.cfg.xml
+            Configuration configuration = new Configuration();
+            configuration.configure("hibernate.cfg.xml");
+            ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+            return configuration.buildSessionFactory(serviceRegistry);
+        } catch (Throwable ex) {
+            System.err.println("Initial SessionFactory creation failed." + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
+ 
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
 	
 
 }

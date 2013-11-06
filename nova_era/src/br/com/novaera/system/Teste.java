@@ -24,7 +24,7 @@ public class Teste {
         //User user = (User) users.get(0);
         
         System.out.println(user.getNome());		
-		*/
+		
 		
 		/*
 		UserController n = new UserController();
@@ -32,9 +32,12 @@ public class Teste {
 		System.out.println(user.getNome());
 		System.out.println(user.getEmail());  
 		*/
+		
 		CustomerController c = new CustomerController();
 		Customer customer = (Customer) c.getCustomerId(1);
 		System.out.println(customer.getName());
+		System.out.println(customer.getAddress().getStreet());
+		System.out.println(customer.getAddress().getCountry());
 		
 		
 		/*

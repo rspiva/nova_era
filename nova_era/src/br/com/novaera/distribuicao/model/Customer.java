@@ -24,9 +24,11 @@ public class Customer{
 	@Column (name="number_doc")
 	private String numberDoc;
 	
+	
 	@OneToOne
 	@PrimaryKeyJoinColumn(name="id_customer")
 	private Address address;
+	
 	
 	public int getIdCustomer() {
 		return idCustomer;
@@ -43,7 +45,17 @@ public class Customer{
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
 
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
 	public String getNumberDoc() {
 		return numberDoc;
 	}
