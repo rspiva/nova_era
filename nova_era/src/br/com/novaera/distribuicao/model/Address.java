@@ -8,21 +8,14 @@ import org.hibernate.annotations.Parameter;
 @Entity
 @Table( name="address")
 public class Address {
-	/*
-	@Id
-	@GeneratedValue(generator="fk_adrress_id_customer")
-	@org.hibernate.annotations.GenericGenerator(name="fk_adrress_id_customer",
-	strategy="foreign", parameters = @Parameter(name="property", value="customer"))
-	*/
+	
 	
 	@Id
-    @Column(name="id_customer", unique=true, nullable=false)
+    @Column(name="id_customer")
     @GeneratedValue(generator="fk_adrress_id_customer")
-	@org.hibernate.annotations.GenericGenerator(name="fk_adrress_id_customer", strategy="foreign", parameters=@Parameter(name="property", value="employee"))
+	@org.hibernate.annotations.GenericGenerator(name="fk_adrress_id_customer", strategy="foreign", parameters=@Parameter(name="property", value="customer"))
 	Integer address;
-	/*
-	@OneToOne(mappedBy="address")
-	*/
+	
 	@OneToOne
     @PrimaryKeyJoinColumn
 	private Customer customer;

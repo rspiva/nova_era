@@ -27,11 +27,6 @@ public class Customer{
 	@Column (name="number_doc")
 	private String numberDoc;
 	
-	/*
-	@OneToOne
-	@PrimaryKeyJoinColumn(name="id_customer")
-	*/
-	
 	@OneToOne(mappedBy="customer", cascade=CascadeType.ALL)
 	private Address address;
 	

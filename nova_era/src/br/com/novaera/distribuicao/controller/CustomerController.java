@@ -41,7 +41,9 @@ public class CustomerController {
 
 	public String insertCustomer(){
 		//this.address.setAddress(1);
+		this.address.setCustomer(this.customer);
 		this.customer.setAddress(this.address);
+		
 		
 		try{
 			SessionFactory sf = HibernateUtil.getSessionFactory();
