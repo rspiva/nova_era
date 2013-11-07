@@ -62,8 +62,17 @@ public class CustomerController {
 			System.out.println("Erro na operação de busca" + e.getMessage());
 		}
 		
-		this.customer = null;
-		this.address = null;
+		//Limpar campos
+		this.customer.setAddress(null);
+		this.customer.setName("");
+		this.customer.setNumberDoc("");
+		this.address.setAddress(null);
+		this.address.setStreet("");
+		this.address.setNumber("");
+		this.address.setNeighborhood("");
+		this.address.setCity("");
+		this.address.setState("");
+		this.address.setCountry(null);
 		
 		return null;		
 	}
