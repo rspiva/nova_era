@@ -35,7 +35,7 @@ public class Teste {
 		*/
 		
 		CustomerController c = new CustomerController();
-		Customer customer = (Customer) c.getCustomerId(1);
+		Customer customer = (Customer) c.getCustomerId(27);
 		System.out.println(customer.getName());
 		System.out.println(customer.getAddress().getStreet());
 		System.out.println(customer.getAddress().getCountry());

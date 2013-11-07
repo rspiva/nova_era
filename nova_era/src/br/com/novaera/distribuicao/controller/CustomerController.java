@@ -1,5 +1,8 @@
 package br.com.novaera.distribuicao.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -58,22 +61,22 @@ public class CustomerController {
 		}catch(Throwable e){
 			System.out.println("Erro na operação de busca" + e.getMessage());
 		}
+		
+		this.customer = null;
+		this.address = null;
+		
 		return null;		
 	}
 	
-	public void insertAddress(Address add){
-						
-		try{
-			SessionFactory sf = HibernateUtil.getSessionFactory();
-	        Session session = sf.openSession();
-	        Transaction transaction = session.beginTransaction();
-	        session.save(add);
-	        transaction.commit();
-			session.close();
-		}catch(Throwable e){
-			System.out.println("Erro na operação de busca" + e.getMessage());
-		}
-				
+	public List getCustomerList(){
+		
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+        Session session = sf.openSession();
+        Transaction transaction = session.beginTransaction();
+        List<Customer> customers = session.createQuery("from Customer").list();		
+		
+		return customers;
+		
 	}
 
 	
