@@ -1,7 +1,7 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
--- Server version	5.6.14
+-- Server version	5.5.27-log
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -27,26 +27,31 @@ USE nova_era;
 
 DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address` (
-  `id_customer` int(10) unsigned NOT NULL,
-  `street` varchar(60) NOT NULL,
-  `number` varchar(5) NOT NULL,
-  `
-neighborhood` varchar(30) NOT NULL,
-  `city` varchar(30) NOT NULL,
-  `state` varchar(30) NOT NULL,
-  `country` varchar(30) NOT NULL,
+  `id_customer` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `street` varchar(60) DEFAULT NULL,
+  `number` varchar(5) DEFAULT NULL,
+  `city` varchar(30) DEFAULT NULL,
+  `state` varchar(30) DEFAULT NULL,
+  `country` varchar(30) DEFAULT NULL,
+  `neighborhood` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_customer`),
   KEY `fk_adrress_id_customer` (`id_customer`),
   CONSTRAINT `fk_adrress_id_customer` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id_customer`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `address`
 --
 
 /*!40000 ALTER TABLE `address` DISABLE KEYS */;
-INSERT INTO `address` (`id_customer`,`street`,`number`,`
-neighborhood`,`city`,`state`,`country`) VALUES 
- (1,'AV Martim Afonso','191','Conceição','Diadema','São Paulo','Brasil');
+INSERT INTO `address` (`id_customer`,`street`,`number`,`city`,`state`,`country`,`neighborhood`) VALUES 
+ (1,'AV Martim Afonso','191','Diadema','São Paulo','Brasil','CONCEICAO'),
+ (27,'Rua do Cais','112','Diadema','SP',NULL,'Guaraja'),
+ (28,'Rua da Cabra Cega','2525','São José dos Campos','SP',NULL,'Serca Doce'),
+ (31,'Rua da Cabra Cega','1525','São José dos Campos','SP',NULL,'Serca Doce'),
+ (34,'Rua Sergio Tomaz de Almeida','1252','Manaus','AM',NULL,'Querobim'),
+ (35,'Av Matarazzo','2521','Curitiba','PR',NULL,'Serquilha'),
+ (36,'Rua do Camelo','52','Campinas','SP',NULL,'Caricó');
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
 
 
@@ -60,7 +65,7 @@ CREATE TABLE `customer` (
   `name` varchar(45) NOT NULL,
   `number_doc` varchar(20) NOT NULL,
   PRIMARY KEY (`id_customer`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customer`
@@ -68,7 +73,13 @@ CREATE TABLE `customer` (
 
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
 INSERT INTO `customer` (`id_customer`,`name`,`number_doc`) VALUES 
- (1,'Rodrigo Sodré Piva','418856254');
+ (1,'Rodrigo Sodré Piva','418856254'),
+ (27,'Roberto Silva','316152'),
+ (28,'Roberto Silva','316152'),
+ (31,'Carlos Sampanho','51521522'),
+ (34,'Severino Cavalcante Junior','32252145615'),
+ (35,'Sergio Correia','2521522'),
+ (36,'Marcio Marfim','2521521552');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 
 
