@@ -7,14 +7,9 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
-import org.hibernate.metamodel.Metadata;
-import org.hibernate.metamodel.MetadataSources;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
-
+import br.com.novaera.distribuicao.model.Address;
 import br.com.novaera.distribuicao.model.Customer;
 import br.com.novaera.system.HibernateUtil;
 
@@ -25,7 +20,64 @@ public class CustomerController {
 	
 	//private Session session;
 	//private Transaction transaction;
+	Customer customer = new Customer();
+	Address address  = new Address();
+		
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public String insertCustomer(){
+		//this.address.setAddress(1);
+		this.customer.setAddress(this.address);
+		
+		try{
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+	        Session session = sf.openSession();
+	        Transaction transaction = session.beginTransaction();
+	        session.save(this.customer);
+	        transaction.commit();
+			session.close();
+			
+			
+			
+		}catch(Throwable e){
+			System.out.println("Erro na operação de busca" + e.getMessage());
+		}
+		return null;		
+	}
+	
+	public void insertAddress(Address add){
+						
+		try{
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+	        Session session = sf.openSession();
+	        Transaction transaction = session.beginTransaction();
+	        session.save(add);
+	        transaction.commit();
+			session.close();
+		}catch(Throwable e){
+			System.out.println("Erro na operação de busca" + e.getMessage());
+		}
+				
+	}
+
+	
+
+
+
 	public Customer getCustomerId(int id_customer){
 		Customer customer = null;
 		try{

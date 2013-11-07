@@ -1,5 +1,6 @@
 package br.com.novaera.distribuicao.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+
 
 
 @Entity
@@ -24,9 +27,12 @@ public class Customer{
 	@Column (name="number_doc")
 	private String numberDoc;
 	
-	
+	/*
 	@OneToOne
 	@PrimaryKeyJoinColumn(name="id_customer")
+	*/
+	
+	@OneToOne(mappedBy="customer", cascade=CascadeType.ALL)
 	private Address address;
 	
 	
@@ -37,7 +43,8 @@ public class Customer{
 	public void setIdCustomer(int idCustomer) {
 		this.idCustomer = idCustomer;
 	}
-
+	
+	
 	public String getName() {
 		return name;
 	}

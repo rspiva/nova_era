@@ -1,6 +1,7 @@
 package br.com.novaera.system;
 
 import br.com.novaera.distribuicao.controller.CustomerController;
+import br.com.novaera.distribuicao.model.Address;
 import br.com.novaera.distribuicao.model.Customer;
 import br.com.novaera.sistema.controller.UserController;
 import br.com.novaera.sistema.model.User;
@@ -32,13 +33,24 @@ public class Teste {
 		System.out.println(user.getNome());
 		System.out.println(user.getEmail());  
 		*/
-		
+		/*
 		CustomerController c = new CustomerController();
 		Customer customer = (Customer) c.getCustomerId(1);
 		System.out.println(customer.getName());
 		System.out.println(customer.getAddress().getStreet());
 		System.out.println(customer.getAddress().getCountry());
+		*/
 		
+		CustomerController c = new CustomerController();
+		Address address = new Address();
+		address.setAddress(1);
+		address.setStreet("Rua Viena");
+		address.setNumber("140");
+		address.setNeighborhood("Jd Nações");
+		address.setCity("Diadema");
+		address.setCountry("Brasil");
+		address.setState("São Paulo");
+		c.insertAddress(address);
 		
 		/*
 		 * 
