@@ -33,6 +33,9 @@ and open the template in the editor.
         <mapping class="br.com.novaera.distribuicao.model.Address"/>
         <mapping package="br.com.novaera.distribuicao.model"/>
         
+        <mapping class="br.com.novaera.mm.model.Product"/>
+        <mapping package="br.com.novaera.mm.model"/>
+        
     </session-factory>    
 </hibernate-configuration>
 

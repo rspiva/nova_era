@@ -1,6 +1,5 @@
 package br.com.novaera.distribuicao.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -83,12 +82,11 @@ public class CustomerController {
         Session session = sf.openSession();
         Transaction transaction = session.beginTransaction();
         List<Customer> customers = session.createQuery("from Customer").list();		
-		
+        transaction.commit();
+		session.close();
 		return customers;
 		
 	}
-
-	
 
 
 

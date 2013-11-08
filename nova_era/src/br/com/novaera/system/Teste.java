@@ -5,7 +5,8 @@ import br.com.novaera.distribuicao.model.Address;
 import br.com.novaera.distribuicao.model.Customer;
 import br.com.novaera.sistema.controller.UserController;
 import br.com.novaera.sistema.model.User;
-
+import br.com.novaera.mm.model.*;
+import br.com.novaera.mm.controller.*;
 public class Teste {
 
 	/**
@@ -33,13 +34,13 @@ public class Teste {
 		System.out.println(user.getNome());
 		System.out.println(user.getEmail());  
 		*/
-		
+		/*
 		CustomerController c = new CustomerController();
 		Customer customer = (Customer) c.getCustomerId(27);
 		System.out.println(customer.getName());
 		System.out.println(customer.getAddress().getStreet());
 		System.out.println(customer.getAddress().getCountry());
-		
+		*/
 		/*
 		CustomerController c = new CustomerController();
 		Address address = new Address();
@@ -71,6 +72,27 @@ public class Teste {
 		Gson gson = new Gson();
 		cliente = gson.fromJson(json, Cliente.class);
 		*/
+		ProductController pc = new ProductController();
+		
+		Product p = pc.getProductId(1);
+		System.out.println(p.getProductName());
+		System.out.println(p.getProductDetails());
+		
+		/*
+		Product p = new Product();
+		p.setSKU(52562);
+		p.setProductName("Caderno em espiral do BEM 10");
+		p.setUnit("PC");
+		p.setWeight(0.400);
+		p.setProductDetails("Caderno em espiral de 100 folhas do Bem 10 - Alienigena OGRO");
+		p.setDimensions("45 X 60 X 20  (C x L x A)");
+		p.setImageDirectory("C\\Image\\52562.png");
+		
+		//salvar produto
+		pc.setProduct(p);
+		pc.insertProduct();
+		*/
+		
 		
 		
 	}
