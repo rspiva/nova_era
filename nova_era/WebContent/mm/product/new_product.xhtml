@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>    
+        <f:loadBundle basename="br.com.novaera.messages.pt_txt" var="msg" />
+        <title><h:outputText value="Cadastro de Produtos"  /></title>
+    </h:head>
+    <h:body>
+	    <h:form id="formIndex">
+
+			<p:panel id="panel" header="Cadastrar novo produto">
+		
+			<p:messages style="color: red" showDetail="true" />
+			<h:panelGrid columns="2" cellpadding="3">
+			
+				<h:outputLabel id="lblNameProduct" value="Nome do Produto" />
+				<p:inputText size="40" id="txtNameProduct" autocomplete="false"
+					title="Nome do produto" value="#{mb_product.product.productName}" />  
+            
+                <h:outputLabel id="lblSKU" value="SKU" />
+                <p:inputText size="20" id="txtSKU" autocomplete="false"
+					title="Inserir Código do Produto" value="#{mb_product.product.SKU}" />
+			     
+			    <h:outputText value="Grupo de cliente" />  
+		        <p:selectOneMenu value="#{mb_product.product.productGroup}" effect="fade">  
+		        	<f:selectItem itemLabel="Selecione um" itemValue="" />  
+		        	<f:selectItems value="#{mb_prodgroup.productGroupList}" var="prodgroup" itemLabel="#{prodgroup.nameGroup}" itemValue="#{prodgroup}"/>  
+		        </p:selectOneMenu>   
+					
+			    <h:outputLabel id="lblUnit" value="Unidade" />
+                <p:inputText size="2" id="txtUnit" autocomplete="false"
+					title="PC / KG / CT" value="#{mb_product.product.unit}" />
+					
+			    <h:outputLabel id="lblWeight" value="Peso" />
+                <p:inputText size="6" id="txtWeight" autocomplete="false"
+					title="Inserir o Peso" value="#{mb_product.product.weight}" />
+					
+			    <h:outputLabel id="lblProductDetails" value="Detalhe do Produto" />
+                <p:inputText size="40" id="txtProductDetails" autocomplete="false"
+					title="Inserir o Peso" value="#{mb_product.product.productDetails}" />
+               
+            </h:panelGrid>
+                
+			<p:commandButton value="Cadastrar"
+				update="panel" actionListener="#{mb_customer.insertProduct()}"
+				id="btnCad" />
+			<br></br>
+			<h:outputLabel id="lblMensagem" value="" />
+
+
+		</p:panel>
+
+	</h:form>
+            
+            
+    </h:body>
+</html>
+

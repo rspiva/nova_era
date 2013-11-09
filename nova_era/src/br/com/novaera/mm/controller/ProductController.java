@@ -3,14 +3,12 @@ package br.com.novaera.mm.controller;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import br.com.novaera.distribuicao.model.Customer;
 import br.com.novaera.mm.model.Product;
 import br.com.novaera.system.HibernateUtil;
 

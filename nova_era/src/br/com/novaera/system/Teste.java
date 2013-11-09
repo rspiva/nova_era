@@ -1,5 +1,7 @@
 package br.com.novaera.system;
 
+import java.util.List;
+
 import br.com.novaera.distribuicao.controller.CustomerController;
 import br.com.novaera.distribuicao.model.Address;
 import br.com.novaera.distribuicao.model.Customer;
@@ -72,14 +74,28 @@ public class Teste {
 		Gson gson = new Gson();
 		cliente = gson.fromJson(json, Cliente.class);
 		*/
+		
+		/*
+		// levantar produto 
 		ProductController pc = new ProductController();
 		
 		Product p = pc.getProductId(1);
 		System.out.println(p.getProductName());
 		System.out.println(p.getProductDetails());
 		System.out.println(p.getProductGroup().getNameGroup());
+		*/
+		
+		// Imprimir Lista de grupos de clientes
+		ProductGroupController pc = new ProductGroupController();
+		List<ProductGroup> list = pc.getProductGroupList();
+		for (ProductGroup pg : list){
+			System.out.println(pg.getNameGroup());
+		}
+		
+		
 		
 		/*
+		//Inserindo um novo produto no banco
 		Product p = new Product();
 		p.setSKU(52562);
 		p.setProductName("Caderno em espiral do BEM 10");
