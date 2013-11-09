@@ -1,0 +1,193 @@
+-- MySQL Administrator dump 1.4
+--
+-- ------------------------------------------------------
+-- Server version	5.5.27-log
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+--
+-- Create schema nova_era
+--
+
+CREATE DATABASE IF NOT EXISTS nova_era;
+USE nova_era;
+
+--
+-- Definition of table `address`
+--
+
+DROP TABLE IF EXISTS `address`;
+CREATE TABLE `address` (
+  `id_customer` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `street` varchar(60) DEFAULT NULL,
+  `number` varchar(5) DEFAULT NULL,
+  `city` varchar(30) DEFAULT NULL,
+  `state` varchar(30) DEFAULT NULL,
+  `country` varchar(30) DEFAULT NULL,
+  `neighborhood` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_customer`),
+  KEY `fk_adrress_id_customer` (`id_customer`),
+  CONSTRAINT `fk_adrress_id_customer` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id_customer`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `address`
+--
+
+/*!40000 ALTER TABLE `address` DISABLE KEYS */;
+INSERT INTO `address` (`id_customer`,`street`,`number`,`city`,`state`,`country`,`neighborhood`) VALUES 
+ (1,'AV Martim Afonso','191','Diadema','SP','Brasil','CONCEICAO'),
+ (27,'Rua do Cais','112','Diadema','SP',NULL,'Guaraja'),
+ (28,'Rua da Cabra Cega','2525','São José dos Campos','SP',NULL,'Serca Doce'),
+ (31,'Rua da Cabra Cega','1525','São José dos Campos','SP',NULL,'Serca Doce'),
+ (34,'Rua Sergio Tomaz de Almeida','1252','Manaus','AM',NULL,'Querobim'),
+ (35,'Av Matarazzo','2521','Curitiba','PR',NULL,'Serquilha'),
+ (36,'Rua do Camelo','52','Campinas','SP',NULL,'Caricó');
+/*!40000 ALTER TABLE `address` ENABLE KEYS */;
+
+
+--
+-- Definition of table `customer`
+--
+
+DROP TABLE IF EXISTS `customer`;
+CREATE TABLE `customer` (
+  `id_customer` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `number_doc` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_customer`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customer`
+--
+
+/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` (`id_customer`,`name`,`number_doc`) VALUES 
+ (1,'Rodrigo Sodré Piva','418856254'),
+ (27,'Roberto Silva','316152'),
+ (28,'Roberto Silva','316152'),
+ (31,'Carlos Sampanho','51521522'),
+ (34,'Severino Cavalcante Junior','32252145615'),
+ (35,'Sergio Correia','2521522'),
+ (36,'Marcio Marfim','2521521552');
+/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
+
+
+--
+-- Definition of table `perfil_user`
+--
+
+DROP TABLE IF EXISTS `perfil_user`;
+CREATE TABLE `perfil_user` (
+  `id_perfil` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  PRIMARY KEY (`id_perfil`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `perfil_user`
+--
+
+/*!40000 ALTER TABLE `perfil_user` DISABLE KEYS */;
+INSERT INTO `perfil_user` (`id_perfil`,`name`) VALUES 
+ (1,'Administrador');
+/*!40000 ALTER TABLE `perfil_user` ENABLE KEYS */;
+
+
+--
+-- Definition of table `product`
+--
+
+DROP TABLE IF EXISTS `product`;
+CREATE TABLE `product` (
+  `id_product` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `SKU` float NOT NULL,
+  `product_name` varchar(45) NOT NULL,
+  `unit` varchar(2) NOT NULL,
+  `weight` double NOT NULL,
+  `product_details` varchar(60) NOT NULL,
+  `dimensions` varchar(35) NOT NULL,
+  `image_directory` varchar(45) NOT NULL,
+  `id_group` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_product`) USING BTREE,
+  KEY `fk_group_product` (`id_group`),
+  CONSTRAINT `fk_group_product` FOREIGN KEY (`id_group`) REFERENCES `product_group` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `product`
+--
+
+/*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` (`id_product`,`SKU`,`product_name`,`unit`,`weight`,`product_details`,`dimensions`,`image_directory`,`id_group`) VALUES 
+ (1,52562,'Caderno em espiral do BEM 10','PC',0.4,'Caderno em espiral de 100 folhas do Bem 10 - Alienigena OGRO','45 X 60 X 20  (C x L x A)','C\\Image\\52562.png',1);
+/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+
+
+--
+-- Definition of table `product_group`
+--
+
+DROP TABLE IF EXISTS `product_group`;
+CREATE TABLE `product_group` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name_group` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `product_group`
+--
+
+/*!40000 ALTER TABLE `product_group` DISABLE KEYS */;
+INSERT INTO `product_group` (`id`,`name_group`) VALUES 
+ (1,'Material Escolar');
+/*!40000 ALTER TABLE `product_group` ENABLE KEYS */;
+
+
+--
+-- Definition of table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id_user` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `login` varchar(12) NOT NULL,
+  `password` varchar(12) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `dt_cadastro` datetime NOT NULL,
+  `id_perfil` int(12) unsigned NOT NULL,
+  PRIMARY KEY (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` (`id_user`,`login`,`password`,`name`,`email`,`dt_cadastro`,`id_perfil`) VALUES 
+ (1,'piva','123','Rodrigo Sodré Piva','rodrigospiva@yahoo.com.br','2013-10-30 00:00:00',1),
+ (2,'vagner','123','Vagner de Oliveira','vagninho@gmail.com.br','2013-10-30 00:00:00',1);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+
+
+
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
