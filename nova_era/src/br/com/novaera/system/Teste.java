@@ -77,6 +77,7 @@ public class Teste {
 		Product p = pc.getProductId(1);
 		System.out.println(p.getProductName());
 		System.out.println(p.getProductDetails());
+		System.out.println(p.getProductGroup().getNameGroup());
 		
 		/*
 		Product p = new Product();
