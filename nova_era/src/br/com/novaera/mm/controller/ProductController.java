@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.novaera.mm.model.Product;
+import br.com.novaera.mm.model.ProductGroup;
 import br.com.novaera.system.HibernateUtil;
 
 
@@ -18,6 +19,10 @@ import br.com.novaera.system.HibernateUtil;
 public class ProductController {
 	
 	Product product = new Product();
+	ProductGroup productGroup = new ProductGroup();
+	
+	//id do grupo de cliente
+	int idProductGroup;	
 
 	public Product getProduct() {
 		return product;
@@ -27,7 +32,28 @@ public class ProductController {
 		this.product = product;
 	}
 	
+	public ProductGroup getProductGroup() {
+		return productGroup;
+	}
+
+	public void setProductGroup(ProductGroup productGroup) {
+		this.productGroup = productGroup;
+	}
+	
+	//Inseri o grupo de cliente através do ID
+	public int getIdProductGroup() {
+		return idProductGroup;
+	}
+
+	public void setIdProductGroup(int idProductGroup) {
+		this.idProductGroup = idProductGroup;
+	}
+
 	public String insertProduct(){
+		
+		//Levantar o grupo de cliente
+		this.productGroup = new ProductGroupController().getProductGroupId(this.idProductGroup);
+		this.product.setProductGroup(this.productGroup);
 		
 		try{
 			SessionFactory sf = HibernateUtil.getSessionFactory();
@@ -40,6 +66,18 @@ public class ProductController {
 		}catch(Throwable e){
 			System.out.println("Erro ao inserir o produto" + e.getMessage());
 		}
+		
+		this.productGroup = null;
+		
+		this.product.setSKU(0);
+		this.product.setProductName("");
+		this.product.setUnit("");
+		this.product.setWeight(0);
+		this.product.setDimensions("");
+		this.product.setProductDetails("");
+		this.product.setProductGroup(null);	
+		this.idProductGroup = 0;	
+		
 		return null;
 	}
 	
@@ -59,5 +97,9 @@ public class ProductController {
 		
 		return product;
 	}
+	
+	
+	
+	
 
 }

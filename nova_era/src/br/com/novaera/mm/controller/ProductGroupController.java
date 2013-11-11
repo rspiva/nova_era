@@ -4,10 +4,15 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+
 
 import br.com.novaera.mm.model.ProductGroup;
 import br.com.novaera.system.HibernateUtil;
@@ -15,7 +20,7 @@ import br.com.novaera.system.HibernateUtil;
 
 @ManagedBean(name = "mb_prodgroup")
 @SessionScoped
-public class ProductGroupController {
+public class ProductGroupController{
 	
 	ProductGroup pg = new ProductGroup();
 
@@ -38,5 +43,25 @@ public class ProductGroupController {
 		return productGroup;
 		
 	}
+	
+	public ProductGroup getProductGroupId(int id){
+		ProductGroup productGroup = null;
+		
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+        Session session = sf.openSession();
+        Transaction transaction = session.beginTransaction();
+		
+        //Filtro conforme o id do parametro
+        Criteria filter = session.createCriteria(ProductGroup.class);
+		filter.add(Restrictions.eq("id", id));
+		productGroup = (ProductGroup) filter.uniqueResult();
+		transaction.commit();
+		session.close();
+		
+		return productGroup;
+		
+	}
+	
+
 
 }

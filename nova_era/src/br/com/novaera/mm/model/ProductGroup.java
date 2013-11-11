@@ -17,8 +17,7 @@ public class ProductGroup {
 	@Column (name="name_group")
 	String nameGroup;
 	
-	
-	
+		
 	public int getId() {
 		return id;
 	}
