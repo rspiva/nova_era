@@ -31,7 +31,7 @@ public class ProductGroupController{
 	public void setPg(ProductGroup pg) {
 		this.pg = pg;
 	}
-	//pg016755517br
+	
 	public List getProductGroupList(){
 		
 		SessionFactory sf = HibernateUtil.getSessionFactory();

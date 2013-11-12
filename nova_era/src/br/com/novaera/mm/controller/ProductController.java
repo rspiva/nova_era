@@ -1,5 +1,7 @@
 package br.com.novaera.mm.controller;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -47,6 +49,18 @@ public class ProductController {
 
 	public void setIdProductGroup(int idProductGroup) {
 		this.idProductGroup = idProductGroup;
+	}
+	
+	public List getProductList(){
+		
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+	    Session session = sf.openSession();
+	    Transaction transaction = session.beginTransaction();
+	    List<Product> product = session.createQuery("from Product").list();		
+	    transaction.commit();
+		session.close();
+		return product;
+		
 	}
 
 	public String insertProduct(){
@@ -98,8 +112,4 @@ public class ProductController {
 		return product;
 	}
 	
-	
-	
-	
-
 }

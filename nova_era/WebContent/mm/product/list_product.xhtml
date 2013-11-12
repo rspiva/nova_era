@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>    
+        <f:loadBundle basename="br.com.novaera.messages.pt_txt" var="msg" />
+        <title><h:outputText value="Lista de Produtos Cadastrados"  /></title>
+        <style>
+            .orders{
+                border: thin solid black;
+            }
+            .ordersHeader{
+                text-align: center;
+                font-style: italic;
+                color: Snow;
+                background: Teal;
+            }
+            .oddLinha{
+                height: 25px;
+                text-align: center;
+                background: mediumturquoise;                
+            }
+            .evenLinha{
+                text-align: center;
+                background: powderblue;
+            }
+        </style>
+    </h:head>
+    <h:body>
+    	<h:form id="formgeral">
+            <p:growl id="msgs" showDetail="true" /> 
+            <p:dataTable  id="dataTable" var="dados" value="#{mb_product.productList}"  
+                 paginator="true" rows="10"
+                 styleClass="orders"
+                 rowStyleClass="oddLinha, evenLinha"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                 rowsPerPageTemplate="5,10,15">
+          
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="SKU"></h:outputText>
+                    </f:facet>
+                    <h:outputText value="#{dados.SKU}"></h:outputText>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Descrição do Produto"></h:outputText>
+                    </f:facet>
+                    <h:outputText value="#{dados.productName}"></h:outputText>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Grupo do Produto"></h:outputText>
+                    </f:facet>
+                    <h:outputText value="#{dados.productGroup.nameGroup}"></h:outputText>
+                </p:column>
+            </p:dataTable>
+        </h:form>            
+    </h:body>
+</html>
+
