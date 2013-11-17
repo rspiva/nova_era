@@ -1,10 +1,15 @@
 package br.com.novaera.system;
 
+import java.util.Date;
 import java.util.List;
 
 import br.com.novaera.distribuicao.controller.CustomerController;
+import br.com.novaera.distribuicao.controller.PriceProductTabController;
+import br.com.novaera.distribuicao.controller.PriceTabController;
 import br.com.novaera.distribuicao.model.Address;
 import br.com.novaera.distribuicao.model.Customer;
+import br.com.novaera.distribuicao.model.PriceProductTab;
+import br.com.novaera.distribuicao.model.PriceTab;
 import br.com.novaera.sistema.controller.UserController;
 import br.com.novaera.sistema.model.User;
 import br.com.novaera.mm.model.*;
@@ -86,12 +91,13 @@ public class Teste {
 		*/
 		
 		// Imprimir Lista de grupos de clientes
+		/*
 		ProductGroupController pc = new ProductGroupController();
 		List<ProductGroup> list = pc.getProductGroupList();
 		for (ProductGroup pg : list){
 			System.out.println(pg.getNameGroup());
 		}
-		
+		*/
 		
 		
 		/*
@@ -111,6 +117,28 @@ public class Teste {
 		*/
 		
 		
+		PriceTabController pc = new PriceTabController();
+		PriceTab pt = pc.getPriceTabId(1);
+		System.out.println(pt.getNamePriceTab());
 		
+		List<PriceProductTab> prices = pt.getPriceProductTabs();
+		
+		System.out.println(prices.get(1).getIdProduct());
+		/*
+		for(PriceProductTab price : prices){
+			System.out.println(price.getPrice());			
+		}
+		*/
+		
+		/*
+		PriceProductTab p = new PriceProductTab();
+		p.setPriceTab(null);
+		p.setIdProduct(3);
+		p.setPrice(2.12);
+		
+		PriceProductTabController pc = new PriceProductTabController();
+		pc.setPriceProductTab(p);
+		pc.insertPriceProductTab();
+		*/
 	}
 }

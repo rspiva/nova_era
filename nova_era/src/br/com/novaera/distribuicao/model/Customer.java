@@ -17,8 +17,7 @@ public class Customer{
 	
 	@Id@GeneratedValue
 	@Column (name="id_customer")
-	private int idCustomer;
-	
+	private int idCustomer;	
 		
 	@Column (name="name")
 	private String name;

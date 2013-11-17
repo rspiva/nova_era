@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>    
+        <f:loadBundle basename="br.com.novaera.messages.pt_txt" var="msg" />
+        <title><h:outputText value="Cadastrar Tab Preço"  /></title>
+    </h:head>
+    <h:body>
+	    <h:form id="formIndex">
+
+			<p:panel id="panel" header="Incluir ">
+		
+			<p:messages style="color: red" showDetail="true" />
+			<h:panelGrid columns="3" cellpadding="3">
+				<h:outputLabel id="lblName" value="#{msg.name}:" />
+				<p:inputText size="50" id="txtName" autocomplete="false"
+					title="#{msg.msgInfName}" value="#{mb_customer.customer.name}" />  
+                    &nbsp;
+
+                <h:outputLabel id="lblDocNumber" value="#{msg.infDocNumber}:" />
+                <p:inputText size="34" id="txtDocNumber" autocomplete="false"
+					title="#{msg.msgDocNumber}" value="#{mb_customer.customer.numberDoc}" />  
+                    &nbsp;
+				
+                </h:panelGrid>
+				<h:panelGrid columns="3" cellpadding="3">	
+                
+                <h:outputLabel id="lblStreet" value="#{msg.street}:" />
+                <p:inputText size="50" id="txtStreet" autocomplete="false"
+					title="#{msg.msgStreet}" value="#{mb_customer.address.street}" />  
+                    <p:inputText size="6" id="txtNumber" autocomplete="false"
+					title="#{msg.msgNumber}" value="#{mb_customer.address.number}" />
+				
+				<h:outputLabel id="lblneighborhood" value="#{msg.neighborhood}:"/>
+                <p:inputText size="30" id="txtNeighborhood" autocomplete="false"
+					title="#{msg.msgNeighborhood}" value="#{mb_customer.address.neighborhood}" />  
+                &nbsp;
+                
+                <h:outputLabel id="lblcity" value="#{msg.city}:"/>
+                <p:inputText size="30" id="txtCity" autocomplete="false"
+					title="#{msg.msgCity}" value="#{mb_customer.address.city}" />
+				<p:inputText size="2" id="txtState" autocomplete="false"
+					title="#{msg.msgState}" value="#{mb_customer.address.state}" />
+				
+			</h:panelGrid>
+                
+			<p:commandButton value="#{msg.logar}" title="#{msg.msgInfLogar}"
+				update="panel" actionListener="#{mb_customer.insertCustomer()}"
+				id="btnLogar" />
+			<br></br>
+			<h:outputLabel id="lblMensagem" value="" />
+
+
+		</p:panel>
+
+	</h:form>
+            
+            
+    </h:body>
+</html>
+

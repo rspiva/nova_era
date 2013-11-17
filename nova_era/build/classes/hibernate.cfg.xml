@@ -31,6 +31,9 @@ and open the template in the editor.
         
         <mapping class="br.com.novaera.distribuicao.model.Customer"/>
         <mapping class="br.com.novaera.distribuicao.model.Address"/>
+        <mapping class="br.com.novaera.distribuicao.model.Order"/>
+        <mapping class="br.com.novaera.distribuicao.model.PriceTab"/>
+        <mapping class="br.com.novaera.distribuicao.model.PriceProductTab"/>
         <mapping package="br.com.novaera.distribuicao.model"/>
         
         <mapping class="br.com.novaera.mm.model.Product"/>
