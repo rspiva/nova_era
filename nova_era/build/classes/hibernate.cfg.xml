@@ -13,7 +13,7 @@ and open the template in the editor.
         
         
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost/nova_era</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost/bd_nova_era</property>
         <property name="hibernate.connection.username">root</property>
         
         <property name="hibernate.connection.password"> </property>
@@ -32,8 +32,6 @@ and open the template in the editor.
         <mapping class="br.com.novaera.distribuicao.model.Customer"/>
         <mapping class="br.com.novaera.distribuicao.model.Address"/>
         <mapping class="br.com.novaera.distribuicao.model.Order"/>
-        <mapping class="br.com.novaera.distribuicao.model.PriceTab"/>
-        <mapping class="br.com.novaera.distribuicao.model.PriceProductTab"/>
         <mapping package="br.com.novaera.distribuicao.model"/>
         
         <mapping class="br.com.novaera.mm.model.Product"/>

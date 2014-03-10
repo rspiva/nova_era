@@ -1,5 +1,7 @@
 package br.com.novaera.distribuicao.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,6 +29,9 @@ public class Customer{
 	
 	@OneToOne(mappedBy="customer", cascade=CascadeType.ALL)
 	private Address address;
+	
+	@Column (name="valor", precision = 8, scale = 2)
+	BigDecimal valor;
 	
 	
 	public int getIdCustomer() {
@@ -63,6 +68,15 @@ public class Customer{
 	public void setNumberDoc(String numberDoc) {
 		this.numberDoc = numberDoc;
 	}
+
+	public BigDecimal getValor() {
+		return valor;
+	}
+
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
+	
 	
 	
 

@@ -4,10 +4,13 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:piva="http://piva.com/facelets">
     <h:head>    
         <f:loadBundle basename="br.com.novaera.messages.pt_txt" var="msg" />
         <title><h:outputText value="#{msg.titleCadCustomer}"  /></title>
+        <h:outputScript library="js" name="jquery.price_format.1.7.js" />
+        <h:outputScript library="js" name="portal.js" /> 
     </h:head>
     <h:body>
 	    <h:form id="formIndex">
@@ -45,6 +48,8 @@
 					title="#{msg.msgCity}" value="#{mb_customer.address.city}" />
 				<p:inputText size="2" id="txtState" autocomplete="false"
 					title="#{msg.msgState}" value="#{mb_customer.address.state}" />
+				
+				<piva:decimal id="txtDecimal" value="#{mb_customer.customer.valor}" size="12"/>
 				
 			</h:panelGrid>
                 

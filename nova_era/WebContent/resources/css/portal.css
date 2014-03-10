@@ -1,0 +1,104 @@
+    /*-------inicio do estilo do menu-------*/
+
+h2 	
+{ 
+	color: #999;
+	margin-bottom: 0; 
+	margin-left:14px;
+	background:url(../image/navigation.jpg) no-repeat;
+	height:40px;
+}
+
+h2 span
+{
+	display: none;
+}
+
+p	
+{ 
+	color: #ffff66; 
+	margin-top: .5em;
+	font-size: 12px;
+	padding-left:10px;	
+}
+
+#navigation-block {
+	position:relative;
+	top:0px;
+	left:3px;
+}
+
+#hide {
+	position:absolute;
+	top:30px;
+	left:-190px;
+}
+
+ul#sliding-navigation
+{
+	list-style: none;
+	font-size: 12px;
+	margin: 30px 0;
+	padding: 0;
+}
+
+
+ul#sliding-navigation li.sliding-element h4
+{
+	
+	display: block;
+	width: 145px;
+	padding: 5px 12px;
+	margin: 0;
+	margin-bottom: 0px;
+}
+ul#sliding-navigation li.sliding-element a
+{
+	
+	display: block;
+	width: 175px;
+	padding: 5px 12px;
+	margin: 0;
+	margin-bottom: 0px;
+}
+
+ul#sliding-navigation li.sliding-element h4
+{
+	color: #fff;
+	background:#333 url(../image/heading_bg.jpg) repeat-y;
+    border: 1px solid #1a1a1a;
+	font-weight: normal;
+}
+
+ul#sliding-navigation li.sliding-element a
+{
+	color: #999;
+	background:#222 url(../image/tab_bg.jpg) repeat-y;
+	border: 1px solid #1a1a1a;
+	text-decoration: none;
+}
+
+ul#sliding-navigation li.sliding-element a:hover { color: #ffff66; }
+
+
+/*-- configuração da tabela de dados --*/
+   
+.orders{
+               /* border: thin solid black;*/
+ }
+ .ordersHeader{
+     text-align: center;
+     font-style: italic;
+     color: Snow;
+     background: Teal;
+ }
+ .oddLinha{
+     height: 25px;
+     text-align: center;
+     background: white;                
+ }
+ .evenLinha{
+     text-align: center;
+     /*background: powderblue;*/
+ }
+

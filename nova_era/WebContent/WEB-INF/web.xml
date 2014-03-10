@@ -24,8 +24,12 @@ javax.faces.webapp.FacesServlet
   </session-config>
   <welcome-file-list>
     <welcome-file>
-index.jsf
+		index.jsf
         </welcome-file>
   </welcome-file-list>
+  <context-param>
+    <param-name>facelets.LIBRARIES</param-name>
+    <param-value>/WEB-INF/piva.taglib.xml</param-value>
+  </context-param>
   
 </web-app>
