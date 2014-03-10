@@ -1,7 +1,10 @@
 package br.com.novaera.system;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import br.com.novaera.distribuicao.controller.CustomerController;
 import br.com.novaera.distribuicao.controller.PriceProductTabController;
@@ -116,7 +119,7 @@ public class Teste {
 		pc.insertProduct();
 		*/
 		
-		
+		/*
 		PriceTabController pc = new PriceTabController();
 		PriceTab pt = pc.getPriceTabId(1);
 		System.out.println(pt.getNamePriceTab());
@@ -124,6 +127,7 @@ public class Teste {
 		List<PriceProductTab> prices = pt.getPriceProductTabs();
 		
 		System.out.println(prices.get(1).getIdProduct());
+		*/
 		/*
 		for(PriceProductTab price : prices){
 			System.out.println(price.getPrice());			
@@ -140,5 +144,13 @@ public class Teste {
 		pc.setPriceProductTab(p);
 		pc.insertPriceProductTab();
 		*/
+		
+		BigDecimal bd = new BigDecimal(25252.01);
+		NumberFormat nf_us = NumberFormat.getInstance(new Locale( "pt", "BR" ));
+		String number_us = nf_us.format(bd);
+		System.out.println(number_us);
+		
+		
+		
 	}
 }

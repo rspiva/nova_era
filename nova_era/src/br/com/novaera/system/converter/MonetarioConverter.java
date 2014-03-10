@@ -1,4 +1,8 @@
 package br.com.novaera.system.converter;
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -20,7 +24,11 @@ public class MonetarioConverter implements Converter{
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component,Object value) {
- 		return value.toString();
+		
+		NumberFormat nf_us = NumberFormat.getInstance(new Locale( "pt", "BR" ));
+		String number_us = nf_us.format(value);
+		
+		return number_us;
  	}
 
 }

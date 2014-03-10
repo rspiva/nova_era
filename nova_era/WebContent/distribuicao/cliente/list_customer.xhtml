@@ -8,6 +8,7 @@
     <h:head>    
         <f:loadBundle basename="br.com.novaera.messages.pt_txt" var="msg" />
         <title><h:outputText value="#{msg.titleCadCustomer}"  /></title>
+        
         <style>
             .orders{
                 border: thin solid black;
@@ -69,6 +70,15 @@
                     </f:facet>
                     <h:outputText value="#{dados.address.state}"></h:outputText>
                 </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Valor"></h:outputText>
+                    </f:facet>
+                    <h:outputText value="#{dados.valor}">
+                    	<f:converter converterId="com.piva.MonetarioConverter" />
+                    </h:outputText>
+                </p:column>
+                
             </p:dataTable>
         </h:form>            
     </h:body>
