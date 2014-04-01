@@ -3,7 +3,7 @@ package br.com.novaera.distribuicao.controller;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -17,7 +17,7 @@ import br.com.novaera.system.HibernateUtil;
 
 
 @ManagedBean(name = "mb_customer")
-@SessionScoped
+@RequestScoped
 public class CustomerController {
 	
 	//private Session session;

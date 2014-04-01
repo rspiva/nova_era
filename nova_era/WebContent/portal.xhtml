@@ -8,19 +8,62 @@
 	
 	<h:head>
 		<title>Menu principal</title>
-		<style>
-	    </style>
+		<h:outputScript library="js" name="portal.js" /> 
+		<h:outputStylesheet library="css" name="portal.css"  />
 	</h:head>
 	<h:body>
-		INSERIR O MENU PRINCIPAL
-		<br></br>
-		<h:outputLink value="http://localhost:8080/nova_era/distribuicao/cliente/new_customer.jsf" title="Acesso a tela de cadastro de cliente"><h:outputLabel value="Novo Cliente" /></h:outputLink>
-		<br></br>
-		<h:outputLink value="http://localhost:8080/nova_era/distribuicao/cliente/list_customer.jsf" title="Acesso a lista de clientes"><h:outputLabel value="Lista de clientes" /></h:outputLink>
-		<br></br>
-		<h:outputLink value="http://localhost:8080/nova_era/mm/product/new_product.jsf" title="Acesso a tela de cadastro de produtos"><h:outputLabel value="Novo Produto" /></h:outputLink>
-		<br></br>
-		<h:outputLink value="http://localhost:8080/nova_era/mm/product/list_product.jsf" title="Acesso a lista produtos"><h:outputLabel value="Lista de produtos" /></h:outputLink>
+		<p:layout fullPage="true">  
+		  
+		    <p:layoutUnit position="north" size="100">  
+		        <h:outputText value="North unit content." />  
+		    </p:layoutUnit>  
+		  
+		    <p:layoutUnit position="south" size="60">  
+		        <h:outputText value="South unit content." />  
+		    </p:layoutUnit>  
+		  
+		    <p:layoutUnit position="west" size="220">  
+		        
+		        <div id="navigation-block">
+					<ul id="sliding-navigation">
+					   <li class="sliding-element"><a href='#'><h4>Home</h4></a></li>
+					   <li class="sliding-element"><a href='#'><h4>Comercial</h4></a>
+				   		     
+				   		    <li class="sliding-element" onclick="javascript:abritela('distribuicao/cliente/list_customer.jsf');"><a href='#'>Clientes</a></li> 
+					        <li class="sliding-element" onclick="javascript:abritela('distribuicao/cliente/new_customer.jsf');"><a href='#'>Novo Cliente</a></li>
+					        <li class="sliding-element"><a href='#'>Menus</a></li>
+					        <li class="sliding-element"><a href='#'>Products</a></li>
+				         
+					   </li>
+					   <li class="sliding-element"><a href='#'><h4>Company</h4></a>
+					         <li class="sliding-element"><a href='#'>About</a></li>
+					         <li class="sliding-element"><a href='#'>Location</a></li>
+					   </li>
+					   <li class="sliding-element"><a href='#'><h4>Contact</h4></a></li>
+					</ul>
+				</div>
+		        
+		        <!-- 
+		        <h:outputLink value="http://localhost:8080/nova_era/distribuicao/cliente/new_customer.jsf" title="Acesso a tela de cadastro de cliente"><h:outputLabel value="Novo Cliente" /></h:outputLink>
+				<br></br>
+				<h:outputLink value="http://localhost:8080/nova_era/distribuicao/cliente/list_customer.jsf" title="Acesso a lista de clientes"><h:outputLabel value="Lista de clientes" /></h:outputLink>
+				<br></br>
+				<h:outputLink value="http://localhost:8080/nova_era/mm/product/new_product.jsf" title="Acesso a tela de cadastro de produtos"><h:outputLabel value="Novo Produto" /></h:outputLink>
+				<br></br>
+				<h:outputLink value="http://localhost:8080/nova_era/mm/product/list_product.jsf" title="Acesso a lista produtos"><h:outputLabel value="Lista de produtos" /></h:outputLink>
+		     	-->
+		    
+		    </p:layoutUnit>  
+		  
+		    <p:layoutUnit position="east" size="100">  
+		        <h:outputText value="Right unit content." />  
+		    </p:layoutUnit>  
+		  
+		    <p:layoutUnit position="center">  
+		        <div id="tela"></div>  
+		    </p:layoutUnit>  
+		  
+		</p:layout>  
 	</h:body>
 </html>
 

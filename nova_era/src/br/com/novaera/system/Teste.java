@@ -144,12 +144,17 @@ public class Teste {
 		pc.setPriceProductTab(p);
 		pc.insertPriceProductTab();
 		*/
-		
+		/*
 		BigDecimal bd = new BigDecimal(25252.01);
 		NumberFormat nf_us = NumberFormat.getInstance(new Locale( "pt", "BR" ));
 		String number_us = nf_us.format(bd);
 		System.out.println(number_us);
-		
+		*/
+		    //String s1 = "example";
+		    Double s1 = (double) (34 ^ 46);
+		    System.out.println(s1);
+		    
+		//substring
 		
 		
 	}

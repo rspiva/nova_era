@@ -49,11 +49,12 @@
 				<p:inputText size="2" id="txtState" autocomplete="false"
 					title="#{msg.msgState}" value="#{mb_customer.address.state}" />
 				
+				 <h:outputLabel id="lbValor" value="TagLib piva converter:"/>
 				<piva:monetario id="txtDecimal" value="#{mb_customer.customer.valor}" size="12"/>
 				
 			</h:panelGrid>
                 
-			<p:commandButton value="#{msg.logar}" title="#{msg.msgInfLogar}"
+			<p:commandButton value="#{msg.salvar}" title="#{msg.msgInfLogar}"
 				update="panel" actionListener="#{mb_customer.insertCustomer()}"
 				id="btnLogar" />
 			<br></br>
