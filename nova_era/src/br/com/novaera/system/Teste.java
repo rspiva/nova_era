@@ -151,10 +151,15 @@ public class Teste {
 		System.out.println(number_us);
 		*/
 		    //String s1 = "example";
-		    Double s1 = (double) (34 ^ 46);
-		    System.out.println(s1);
-		    
 		//substring
+		
+		//Teste da classe DBController
+		
+		DBController db = new DBController();
+		Customer c = new Customer();
+		c = (Customer) db.getObjectId(c, "id", 1);
+		System.out.println(c.getName());
+		System.out.println(c.getAddress().getStreet());
 		
 		
 	}
